@@ -1,0 +1,263 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login </title>
+    <meta name="author" content="Aditya Prakash ">
+    <meta name="description" content="">
+
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.png' %}" />
+    <script src="{% static 'js/comback.js' %}"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .color-change-4x {
+            -webkit-animation: color-change-4x 6s linear infinite alternate-reverse both;
+            animation: color-change-4x 6s linear infinite alternate-reverse both;
+        }
+
+        @-webkit-keyframes color-change-4x {
+            0% {
+                background: #19dcea;
+            }
+
+            33.3333% {
+                background: #b22cff;
+            }
+
+            66.666% {
+                background: #36d107;
+            }
+
+            100% {
+                background: #f5be10;
+            }
+        }
+
+        @keyframes color-change-4x {
+            0% {
+                background: #19dcea;
+            }
+
+            33.3333% {
+                background: #b22cff;
+            }
+
+            66.666% {
+                background: #a915a987;
+            }
+
+            100% {
+                background: #f5be10;
+            }
+        }
+    </style>
+    <style>
+        .body-bg {
+            background-color: #9921e8;
+            background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+        }
+    </style>
+</head>
+
+<body class=" color-change-4x  min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0" style="font-family:'Lato',sans-serif;">
+    <header class="max-w-lg mx-auto">
+        <a href="#">
+            <h1 class="text-4xl font-bold text-white text-center">Login</h1>
+        </a>
+    </header>
+
+    <main class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
+        <section>
+            <h3 class="font-bold text-2xl">Welcome to Graphical Security</h3>
+            <p class="text-gray-600 pt-2">Sign in to your account.</p>
+        </section>
+        {% if messages %}
+        <div id="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+            {% for message in messages %}
+            <span class="block sm:inline">{{message}}</span>
+            {% endfor %}
+            <button class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="clk()">
+                <svg class="fill-current h-6 w-6 text-red-500" role="button" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20">
+                    <title>Close</title>
+                    <path
+                        d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z" />
+                </svg>
+            </button>
+        </div>
+        {% endif %}
+        <section class="mt-10">
+            <form class="flex flex-col" method="POST" action="signin">
+                {% csrf_token %}
+                {% if bol %}
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="email">Username</label>
+                    <input type="text" id="username" name="username"
+                        class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3"
+                        required>
+                </div>
+                {% else %}
+                <input type="hidden" name="username" value="{{godwatch}}">
+                <div class="mb-6 pt-3 rounded bg-gray-200">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="password">Password</label>
+                    <input type="password" id="password" name="password"
+                        class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3"
+                        required>
+                </div>
+                <div class="mb-6 pt-3 rounded bg-gray-200 ">
+                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="password2" required>Graphical
+                        Password</label>
+                    <div class="flex justify-center space-x-7">
+                        {% for image in images %}
+                        <input type="checkbox" style="background-image: url('static/passimages/{{image}}');" value=""
+                            name='image' onclick="clicked(this.id)" id="thing{{forloop.counter}}" /><label
+                            style="background-image: url('static/passimages/{{image}}');"
+                            for="thing{{forloop.counter}}"></label>
+                        {% endfor %}
+
+                        <script>
+                            function clicked(id) {
+                                let y = document.getElementById(id);
+                                img = y.style.backgroundImage;
+                                if (y.value == "") {
+                                    y.value = String(Math.round(+new Date() / 100)) + '.' + img.substring(4, img.length - 1);
+                                }
+                                else {
+                                    y.value = null;
+                                }
+                                // console.log(img);
+                                // console.log(id);
+                                //console.log(y.value);
+                            }
+                        </script>
+                        <style>
+                            input[type=checkbox] {
+                                display: none;
+                            }
+
+                            input#thing1[type=checkbox]+label {
+
+                                border-color: white;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+
+                            input#thing2[type=checkbox]+label {
+
+                                border-color: white;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+
+                            input#thing3[type=checkbox]+label {
+
+                                border-color: white;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+
+                            input#thing4[type=checkbox]+label {
+
+                                border-color: white;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+
+                            input#thing5[type=checkbox]+label {
+
+                                border-color: white;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+
+                            input#thing1[type=checkbox]:checked+label {
+                                border-color: red;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+
+                            input#thing2[type=checkbox]:checked+label {
+                                border-color: red;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+
+                            input#thing3[type=checkbox]:checked+label {
+                                border-color: red;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+
+                            input#thing4[type=checkbox]:checked+label {
+                                border-color: red;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+
+                            input#thing5[type=checkbox]:checked+label {
+                                border-color: red;
+                                border-style: solid;
+                                height: 32px;
+                                width: 32px;
+                                display: inline-block;
+                                padding: 0 0 0 0px;
+                            }
+                        </style>
+                    </div>
+                </div>
+                <div class="flex justify-end">
+                    <a href="#" class="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Forgot your
+                        password?</a>
+                </div>
+                {% endif %}
+                <button
+                    class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200"
+                    type="submit">Sign In</button>
+            </form>
+        </section>
+    </main>
+
+    <div class="max-w-lg mx-auto text-center mt-12 mb-6">
+        <p class="text-white">Don't have an account? <a href="signup" class="font-bold hover:underline">Sign up</a>.</p>
+    </div>
+
+    <footer class="max-w-lg mx-auto flex justify-center text-white">
+        <a href="#" class="hover:underline">Contact</a>
+        <span class="mx-3">•</span>
+        <a href="#" class="hover:underline">Privacy</a>
+    </footer>
+</body>
+
+</html>

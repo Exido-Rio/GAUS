@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Aditya Prakash ">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon/favicon.png' %}" />
+    <script src="{% static 'js/comback.js' %}"></script>
+    <title>Graphical Security</title>
+</head>
+
+<body>
+    <h1>You did it </h1>
+    <h2>Your username : {{usern}}</h2>
+    <h2>Your Password : {{passw}}</h2>
+    <h2>Your graphical Password</h2>
+    {% for img in images %}
+    <img src="static/passimages/{{img}}" alt="images">
+    {% endfor %}
+    <p><a href="/">Home</a></p>
+    <p><a href="logout">Logout</a></p>
+</body>
+
+</html>
