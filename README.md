@@ -27,6 +27,10 @@ next time user want to login . They need password and same order images selectio
 based on login attempt to a user's account . 
 </p>
 
+## DEMO :
+
+<img title="Maintainence" src="https://github.com/Exido-Rio/GAUS/blob/main/gaus_reg.png">
+
 ## AVAILABLE ON :
 
 * Windows
@@ -43,6 +47,7 @@ python3 -m pip install -r requirements.txt
 * [+] Easy to remember image password !
 * [+] Hard to phish the user (phishing attack) !
 * [+] Simple password with combination of ordered image password !
+
 
 
 ## USAGE :
