@@ -29,7 +29,7 @@ based on login attempt to a user's account .
 
 ## DEMO :
 
-<img title="Maintainence" src="https://github.com/Exido-Rio/GAUS/blob/main/gaus_reg.png">
+<img title="demo" src="https://github.com/Exido-Rio/GAUS/blob/main/gaus_reg.png">
 
 ## AVAILABLE ON :
 
